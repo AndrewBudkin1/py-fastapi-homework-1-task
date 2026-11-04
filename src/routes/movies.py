@@ -39,6 +39,8 @@ async def get_all_movies(
     movies = result.all()
     if not movies:
         raise HTTPException(status_code=404, detail="No movies found.")
+
+    # Full path includes the router prefix "/api/v1/theater" from main.py
     prev_page = None
     if page > 1:
         prev_page = (
