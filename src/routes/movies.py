@@ -40,18 +40,13 @@ async def get_all_movies(
     if not movies:
         raise HTTPException(status_code=404, detail="No movies found.")
 
-    # Full path includes the router prefix "/api/v1/theater" from main.py
     prev_page = None
     if page > 1:
-        prev_page = (
-            f"/api/v1/theater/movies/?page={page - 1}&per_page={per_page}"
-        )
+        prev_page = f"/theater/movies/?page={page - 1}&per_page={per_page}"
 
     next_page = None
     if page < total_pages:
-        next_page = (
-            f"/api/v1/theater/movies/?page={page + 1}&per_page={per_page}"
-        )
+        next_page = f"/theater/movies/?page={page + 1}&per_page={per_page}"
 
     return MovieListResponseSchema(
         movies=movies,
